@@ -1,0 +1,11 @@
+a {
+    text-decoration: none;
+    color: brown;
+    font-size: x-large;
+}
+
+body {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 35px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+    <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<table style="border: 0">
+    <tbody>
+    <tr>
+        <td>
+            <form method="get" th:action="@{/person_account}">
+                <button type="submit">Личный кабинет</button>
+            </form>
+        </td>
+        <td>
+            <form method="get" th:action="@{/orders}">
+                <input type="submit" value="Заказы">
+            </form>
+        </td>
+        <td>
+            <form method="get" th:action="@{/cart}">
+                <button type="submit">Корзина</button>
+            </form>
+        </td>
+        <td>
+            <form method="post" th:action="@{/logout}">
+                <button type="submit">Выйти из личного кабинета</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h3>Информация о товаре: </h3>
+<p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+<p th:text="'Описание: ' + ${product.getDescription()}"></p>
+<p th:text="'Цена: ' + ${product.getPrice()}"></p>
+<p th:text="'Cклад: ' + ${product.getWarehouse()}"></p>
+<p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+<p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+<div th:each="img : ${product.getImageList()}">
+    <img th:src="'/img/' + ${img.getFileName()}">
+</div>
+</body>
+</html>

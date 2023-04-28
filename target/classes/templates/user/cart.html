@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<table style="border: 0">
+    <tbody>
+    <tr>
+        <td>
+            <form method="get" th:action="@{/person_account}">
+                <button type="submit">Личный кабинет</button>
+            </form>
+        </td>
+        <td>
+            <form method="get" th:action="@{/orders}">
+                <input type="submit" value="Заказы">
+            </form>
+        </td>
+        <td>
+            <form method="get" th:action="@{/cart}">
+                <button type="submit">Корзина</button>
+            </form>
+        </td>
+        <td>
+            <form method="post" th:action="@{/logout}">
+                <button type="submit">Выйти из личного кабинета</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<h3>Корзина товаров</h3>
+
+<div th:each="product : ${cart_product}">
+    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+    <br>
+    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+    <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
+    <hr>
+</div>
+<h3 th:text="'Итоговая цена: ' + ${price}"></h3>
+<form method="get" th:action="@{/order/create}">
+    <button type="submit">Оформить заказ</button>
+</form>
+<br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
